@@ -1,0 +1,31 @@
+ * {
+    background-color: salmon;
+    color: black;
+ }
+
+ .container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
+    border: 1em solid rgb(54, 247, 247);
+}
+
+.button {
+    display: inline-block;
+    width: 100%;
+    padding-top: 5%;
+    font-size: 16px;
+    
+    text-align: center;
+}
+
+#button1 {
+    width:25%;
+    cursor: grabbing;
+}
+
+footer {
+    text-align: center;
+    padding-top: 10%;
+}
