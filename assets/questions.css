@@ -1,0 +1,12 @@
+:root {
+    background-color: salmon;
+    color: black;
+    font-size: 60%;
+ }
+
+ * {
+   margin: 0;
+   padding:0;
+   box-sizing: border-box;
+   font-family: 'Times New Roman', Times, serif;
+ }

@@ -1,31 +1,64 @@
- * {
+ :root {
     background-color: salmon;
     color: black;
+    font-size: 60%;
+ }
+
+ * {
+   margin: 0;
+   padding:0;
+   box-sizing: border-box;
+   font-family: 'Times New Roman', Times, serif;
  }
 
  .container {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    justify-content: space-around;
     text-align: center;
-    border: 1em solid rgb(54, 247, 247);
+    cursor: pointer;
 }
 
-.button {
-    display: inline-block;
+.main {
+    display:inline-block;
     width: 100%;
     padding-top: 5%;
     font-size: 16px;
-    
     text-align: center;
 }
 
 #button1 {
     width:25%;
-    cursor: grabbing;
+    cursor: pointer;
 }
 
 footer {
     text-align: center;
     padding-top: 10%;
 }
+
+.question-box {
+    display: flex;
+    width: 100%;
+    padding: 5%;
+    flex-wrap: wrap;
+    padding-top: 5%;
+    justify-content: center;
+
+}
+
+.answer {
+    cursor: pointer;
+}
+
+
+#score-button {
+    cursor: pointer;
+}
+
+
+
+
+
+/* Media query for answer buttons to adjust properly.
+    @375px, 768px */
