@@ -1,4 +1,7 @@
-var question = document.getElementById("question-box");
+document.getElementById("#button1").addEventListener("click", gameStart());
+
+// var question? not questions? 
+var questions = document.getElementsByID("questionTitle");
 var choices = Array.from(document.getElementsByClassName("answerChoice"));
 
 var currentQuestion = {};
@@ -15,7 +18,7 @@ var questions = [
         choice2: "Booleans",
         choice3: "Alerts",
         choice4: "Numbers",
-        answer: 3,
+        rightAnswer: 3,
     }   ,
     {
         question: "The condition in an if/else statement is enclosed with:",
@@ -23,7 +26,7 @@ var questions = [
         choice2: "Curly Brackets",
         choice3: "Parentheses",
         choice4: "Square Brackets",
-        answer: 2,
+        rightAnswer: 2,
     }   ,
     {
         question: "String values must be encloed within ____ when being assigned to variables.",
@@ -31,7 +34,7 @@ var questions = [
         choice2: "Curly Brackets",
         choice3: "Quotes",
         choice4: "Parentheses",
-        answer: 3,
+        rightAnswer: 3,
     }   ,
     {
         question: "Arrays in Javascript can be used to store ____.",
@@ -39,7 +42,7 @@ var questions = [
         choice2: "Other Arrays",
         choice3: "Booleans",
         choice4: "All of the Above",
-        answer: 4,
+        rightAnswer: 4,
     }   ,
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
@@ -47,13 +50,31 @@ var questions = [
         choice2: "Terminal/Bash",
         choice3: "For Loops",
         choice4: "Console.log",
-        answer: 4,
-    }   ,
+        rightAnswer: 4,
+    }
 ];
 
-gameStart = () => {
+
+gameStart(); {
     questionNumber = 0;
     score = 0;
     remainingQuestions = [...questions];
     getNewQuestion();
 };
+
+getnewQuestion(); {
+    // for loop goes here?
+    for(var i=0; i < questions.length; i++) {
+        var answer = window.prompt(questions[i].question);
+        if(answer == questions[i].rightAnswer) {
+         score++;
+         alert("Correct!");
+        } else {
+            alert("Incorrect!");
+        }
+    }
+}
+
+
+
+// alert("You got " + score +"/" + questions.length);
