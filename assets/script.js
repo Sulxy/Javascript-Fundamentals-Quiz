@@ -34,7 +34,6 @@ var questionsArray = [
 
 // Function to start the quiz
 function startQuiz() {
-    // Start the timer
     startTimer();
 
     // Present the first question
@@ -59,9 +58,6 @@ function startTimer() {
     }, 1000);
 }
 
-
-
-// pass in button 0/1/2/3 // 
 // Function to present a question
 function presentQuestion() {
     document.getElementById("question").innerHTML = questionsArray[currentQuestionIndex].questionHTML;
