@@ -1,80 +1,121 @@
-document.getElementById("#button1").addEventListener("click", gameStart());
 
-// var question? not questions? 
-var questions = document.getElementsByID("questionTitle");
-var choices = Array.from(document.getElementsByClassName("answerChoice"));
-
-var currentQuestion = {};
-var correctAnswers = false;
-var score = 0;
-var questionNumber = 0;
-var remainingQuestions = [];
-
-
-var questions = [
+var questionHTML = document.getElementById("question-box");
+var answerChoiceHTML = Array.from(document.getElementsByClassName("answerChoice"));
+var initials = "";
+var timer = document.getElementById("timer");
+var currentQuestionIndex = 0;
+var questionsArray = [
     {
-        question: "Commonly used data types DO NOT incluse:",
-        choice1: "Strings",
-        choice2: "Booleans",
-        choice3: "Alerts",
-        choice4: "Numbers",
-        rightAnswer: 3,
-    }   ,
+        questionHTML: "Commonly used data types DO NOT include:",
+        answerChoiceHTML: ["A. Strings", "B. Booleans", "C. Alerts", "D. Numbers"],
+        correctAnswer: "C. Alerts"
+    },
     {
-        question: "The condition in an if/else statement is enclosed with:",
-        choice1: "Quotes",
-        choice2: "Curly Brackets",
-        choice3: "Parentheses",
-        choice4: "Square Brackets",
-        rightAnswer: 2,
-    }   ,
+        questionHTML: "The condition in an if/else statement is enclosed with:",
+        answerChoiceHTML: ["A. Quotes", "B. Curly Brackets", "C. Parentheses", "D. Square Brackets"],
+        correctAnswer: "B. Curly Brackets"
+    },
     {
-        question: "String values must be encloed within ____ when being assigned to variables.",
-        choice1: "Commas",
-        choice2: "Curly Brackets",
-        choice3: "Quotes",
-        choice4: "Parentheses",
-        rightAnswer: 3,
-    }   ,
+        questionHTML: "String values must be enclosed within ____ when being assigned to variables.",
+        answerChoiceHTML: ["A. Commas", "B. Curly Brackets", "C. Quotes", "D. Parentheses"],
+        correctAnswer: "C. Quotes"
+    },
     {
-        question: "Arrays in Javascript can be used to store ____.",
-        choice1: "Numbers and Strings",
-        choice2: "Other Arrays",
-        choice3: "Booleans",
-        choice4: "All of the Above",
-        rightAnswer: 4,
-    }   ,
+        questionHTML: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answerChoiceHTML: ["A. Javacsript", "B. Terminal/Bash", "C. For Loops", "D. Console.log"],
+        correctAnswer: "D. Console.log"
+    },
     {
-        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        choice1: "Javascript",
-        choice2: "Terminal/Bash",
-        choice3: "For Loops",
-        choice4: "Console.log",
-        rightAnswer: 4,
-    }
-];
+        questionHTML: "Arrays in Javascript can be used to store ____.",
+        answerChoiceHTML: ["A. Numbers and Strings", "B. Other Arrays", "C. Booleans", "D. All of the Above"],
+        correctAnswer: "D. All of the Above"
+    },
+]; 
 
+// Function to start the quiz
+function startQuiz() {
+    // Start the timer
+    startTimer();
 
-gameStart(); {
-    questionNumber = 0;
-    score = 0;
-    remainingQuestions = [...questions];
-    getNewQuestion();
-};
+    // Present the first question
+    presentQuestion();
+}
 
-getnewQuestion(); {
-    // for loop goes here?
-    for(var i=0; i < questions.length; i++) {
-        var answer = window.prompt(questions[i].question);
-        if(answer == questions[i].rightAnswer) {
-         score++;
-         alert("Correct!");
+startQuiz();
+
+// Function to start the timer
+function startTimer() {
+    let seconds = 30;
+
+    const timer = setInterval(() => {
+        if (seconds === 0) {
+            clearInterval(timer);
+            endGame();
         } else {
-            alert("Incorrect!");
+            document.getElementById("timer").innerHTML = seconds;
+            console.log(seconds);
+            seconds--;
         }
-    }
+    }, 1000);
 }
 
 
 
-// alert("You got " + score +"/" + questions.length);
+// pass in button 0/1/2/3 // 
+// Function to present a question
+function presentQuestion() {
+    document.getElementById("question").innerHTML = questionsArray[currentQuestionIndex].questionHTML;
+    
+    document.getElementById("button1").innerHTML = questionsArray[currentQuestionIndex].answerChoiceHTML[0];
+    document.getElementById("button1").addEventListener("click", handleAnswer);
+
+    document.getElementById("button2").innerHTML = questionsArray[currentQuestionIndex].answerChoiceHTML[1];
+    document.getElementById("button2").addEventListener("click", handleAnswer);
+
+    document.getElementById("button3").innerHTML = questionsArray[currentQuestionIndex].answerChoiceHTML[2];
+    document.getElementById("button3").addEventListener("click", handleAnswer);
+
+    document.getElementById("button4").innerHTML = questionsArray[currentQuestionIndex].answerChoiceHTML[3];
+    document.getElementById("button4").addEventListener("click", handleAnswer);
+
+    currentQuestionIndex++; // Move to the next question
+}
+
+
+// Function to handle user's answer
+function handleAnswer(answer, seconds) {
+    if (answer === questionsArray[currentQuestionIndex].correctAnswer) {
+        // Answer is correct
+        score += 10;
+    } else {
+        // Answer is wrong
+        seconds -= 10;
+        if (seconds < 0) {
+            seconds = 0;
+        }
+    }
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questionsArray.length) {
+        // Move to the next question
+        presentQuestion();
+    } else {
+        // No more questions, end the game
+        endGame();
+    }
+}
+
+// Function to end the game
+function endGame(score) {
+    // Stop the timer
+    clearInterval(timer);
+    // Save the score
+    saveScore(initials, score);
+}
+
+// Function to save initials and score
+function saveScore(initials, score) {
+    // Save initials to local storage
+    localStorage.setItem("initials", initials);
+    // Your score saving logic goes here
+    localStorage.setItem("score", score);
+}

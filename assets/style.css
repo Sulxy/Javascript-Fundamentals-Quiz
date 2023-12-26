@@ -27,7 +27,7 @@
     text-align: center;
 }
 
-#button1 {
+#startButton, #button1, #button2, #button3, #button4 {
     width:25%;
     cursor: pointer;
 }
